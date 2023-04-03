@@ -1,0 +1,3 @@
+.filter-gray{
+  filter: invert(2%) sepia(0%) saturate(310%) hue-rotate(10deg) brightness(100%) contrast(100%);
+}

@@ -1,0 +1,15 @@
+.filter-gray{
+  filter: invert(3%) sepia(0%) saturate(310%) hue-rotate(10deg) brightness(100%) contrast(100%);
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.centerdiv {
+  margin: auto;
+  width: 95%;
+  /* border: 3px solid green; */
+  /* padding: 10px; */
+}

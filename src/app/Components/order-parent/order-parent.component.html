@@ -1,0 +1,79 @@
+<h1 #test>Test View Child</h1>
+<div class="row col-12">
+  <div class="col-3">
+
+    <!-- [(ngModel)]="selectedCategory" -->
+    <!-- label -->
+    <label for="inputState" class="form-label fw-bold" >Category</label>
+    <!-- <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedCategory">
+      <option selected value="0">All</option>
+      <option *ngFor="let cat of categories" [value]="cat.Id">{{cat.Name}}</option>
+    </select> -->
+  </div>
+  <div class="col-3">
+    <!-- [(ngModel)]="selectedPrice" -->
+    <label for="inputState" class="form-label fw-bold">Price</label>
+    <select class="form-select" aria-label="Default select example" >
+      <option selected value="All">All</option>
+      <option value="1000">1000</option>
+      <option value="2000">2000</option>
+      <option value="3000">3000</option>
+    </select>
+  </div>
+  <div class="col-3">
+    <!-- [(ngModel)]="selectedDiscount" -->
+    <label for="inputState" class="form-label fw-bold">Discount</label>
+    <select class="form-select" aria-label="Default select example">
+      <option selected value="All">All</option>
+      <option value="10%">10%</option>
+      <option value="20%">20%</option>
+      <option value="30%">30%</option>
+    </select>
+  </div>
+  <div class="col-3">
+    <!-- [(ngModel)]="selectedQuantity" -->
+    <label for="inputState" class="form-label fw-bold">Quantity</label>
+    <select class="form-select" aria-label="Default select example">
+      <option selected value="All">All</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+  </div>
+</div>
+<div class="row col-12">
+  <!-- <div class="col-3 bg-success mx-auto my-1 rounded text-center" >Cart</div> -->
+  <!--
+  <ng-container *ngFor="let product of Cart; let i=index">
+    <div class="col-3 m-3 row border rounded">
+      <img [src]="product.productInCart.Img" class="img-fluid filter-gray w-100 rounded" alt="...">
+      <div class="col-12 p-3">
+        <h4 class="m-0">{{product.productInCart.Name | uppercase}}</h4>
+        <p class="fw-bold my-1">Price: {{product.productInCart.Price | currency:'EGP'}} </p>
+
+          <p class="fw-bold my-1" #decreasequantity>Count: {{product.count}}</p>
+          <p class="fw-bold my-1">Total Price {{(product.count*product.productInCart.Price) | currency:'EGP'}} </p>
+
+        <button class="btn btn-danger border-none mb-2 fw-bold fs-5"
+          style="width: 100%;" (click)="Delete(product)"> Delete
+        </button>
+
+        <button class="btn btn-success border-none mb-2 fw-bold fs-5"
+          style="width: 100%;" (click)="CheckOut(product)"> Checkout
+        </button>
+
+      </div>
+    </div>
+  </ng-container>
+  </div>
+-->
+   <!-- All Total Price hidden until add to cart-->
+   <!-- <div class=" col-4 mx-auto bg-dark rounded">
+    <h3 class="text-center text-info" *ngIf="TotalPrice()!=0">All Total Price: {{ TotalPrice()| currency:'EGP'}}</h3>
+  </div> -->
+
+<!-- <h1>{{Cart[0].Name}}</h1> -->
+<!-- [ProductToCartEvent]="GetProduct($product)" -->
+<!-- <app-products [selectedCategory]="selectedCategory" (ProductToCartEvent) = "GetProduct($event)"></app-products> -->
+
+

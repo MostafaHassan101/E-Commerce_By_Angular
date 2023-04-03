@@ -1,0 +1,132 @@
+<div class="container-fluid">
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/img/5ed2dbec-eac6-4c65-a352-1cfd2424ad52.png" class="d-block w-100 img-fluid" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/img/7ba52055-7a2d-439e-8384-57c71fcdb981.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/img/814fd2c7-e665-4631-ad5b-342081edbee9.png" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="row col-12">
+    <div class="row">
+      <!-- *ngIf="ThkMsg" -->
+      <div class="d-inline-block fw-bold text-success fs-5 text-center" *ngIf="ThkMsg">Thanks for purchasing from our
+        Store
+        <span class="text-info fs-4">{{ClientName}}</span>
+      </div>
+      <div class="col-3 mx-auto">
+        <img src="assets/img/logo.png" class="img-fluid" *ngIf="!ThkMsg">
+        <button class="btn btn-primary border-none mb-2 fw-bold col-12 mx-auto" (click)="IsPurshased()">Toggle</button>
+      </div>
+    </div>
+  </div>
+  <!-- drop down option -->
+  <div class="row col-12 mx-3">
+    <div class="col-3">
+
+      <label for="inputState" class="form-label fw-bold">Category</label>
+      <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedCategory">
+        <option selected value="0">All</option>
+        <!-- <option *ngFor="let cat of categories" [value]="cat.Id">{{cat.Name}}</option> -->
+      </select>
+    </div>
+    <div class="col-3">
+      <label for="inputState" class="form-label fw-bold">Price</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected value="All">All</option>
+        <option value="1000">1000</option>
+        <option value="2000">2000</option>
+        <option value="3000">3000</option>
+      </select>
+    </div>
+    <div class="col-3">
+      <label for="inputState" class="form-label fw-bold">Discount</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected value="All">All</option>
+        <option value="10%">10%</option>
+        <option value="20%">20%</option>
+        <option value="30%">30%</option>
+      </select>
+    </div>
+    <div class="col-3">
+      <label for="inputState" class="form-label fw-bold">Quantity</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected value="All">All</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+  </div>
+  <div class="row col-12 centerdiv">
+    <ng-container *ngFor="let product of ProductList; let i=index">
+      <div class="col-3 m-3 row border shadow rounded" *ngIf="product.stock!=0">
+        <a appBorderStyle="green" (click)="GetProductDetails(product.id)" class="btn filter-gray m-1 p-0"
+          style="background-color: rgb(252, 252, 252);">
+          <img [src]="product.thumbnail" class="center img-fluid w-75" alt="..."></a>
+        <div class="col-12">
+          <h4 class="m-0"><a class="btn fw-bold fs-6 text-info"
+              (click)="GetProductDetails(product.id)">{{product.title | uppercase}}</a></h4>
+          <p class="fw-bold my-1">Price: {{product.price | currency:'EGP'}} </p>
+          <span class="text-decoration-line-through">{{ (product?.price)! / (product?.discountPercentage)!  | currency:'EGP'}}</span>
+          <p class="p-1 my-1 rounded"
+            [style.background-color]="(product.stock==1)?' rgb(255, 208, 52)':' rgb(97, 224, 46)'">
+            Available Now: <span class="fw-bold">{{product.stock}}</span></p>
+          <p class="card-text m-0">{{product.description}}</p>
+
+          <input type="number" class="form-control m-1" min="0" max="{{product.stock}}"
+            (keydown)="MaxInput($event, product)" placeholder="Number Of Products" #count>
+          <button class="btn btn-primary border-none mb-2 fw-bold fs-6" style="width: 100%;"
+            (click)="AddToCart(product, count)" (click)="count.value=''">
+            Add To Cart</button>
+          <button class="btn btn-info border-none mb-2 fw-bold fs-5" (click)="DecQuantity(product)"
+            style="width: 100%;"> Buy
+          </button>
+          <button class="btn btn-outline-danger" (click)="DeleteProd(product.id)">Delete</button>
+          <!-- <button class="btn btn-outline-info" (click)="UpdatedPrd(Prod.id)">Update</button> -->
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<!-- <div class="row bg-danger fw-bold fs-4 rounded">
+      <span class="text-center">
+        Filtered Products
+      </span>
+    </div>
+    <div class="row col-12">
+      <button (click)="filterProductsByCategory()" class="btn btn-info my-2">Filter Products</button>
+       <ng-container *ngFor="let product of filterProducts;let i=index">
+        <div class="col-3 m-3 row border rounded" *ngIf="product.Quantity!=0">
+          <img [src]="product.Img" class="img-fluid filter-gray w-100 rounded" alt="...">
+          <div class="col-12 p-3">
+            <h4 class="m-0">{{product.Name | uppercase}}</h4>
+            <p class="fw-bold my-1">Price: {{product.Price | currency:'EGP'}} </p>
+            <p class="p-1 my-1 rounded"
+              [style.background-color]="(product.Quantity==1)?' rgb(255, 208, 52)':' rgb(97, 224, 46)'">
+              Available Now: <span class="fw-bold">{{product.Quantity}}</span></p>
+            <p class="card-text m-0">Some quick example text to build on the card title.</p>
+            <h4 class="fw-bold text-body-secondary" *ngIf="product.Discount!='No Discount'">{{product.Discount}}</h4>
+            <button class="btn btn-primary border-none mb-2 fw-bold fs-6" style="width: 100%;">Add To Cart</button>
+            <button class="btn btn-info border-none mb-2 fw-bold fs-5" (click)="DecQuantity(product)"
+              style="width: 100%;">Buy</button>
+          </div>
+        </div>
+      </ng-container>
+      </div> -->
